@@ -15,7 +15,9 @@ class HomePage extends StatelessWidget {
         }, icon: const Icon(Icons.settings))
       ],),
       body: Placeholder(),
-      floatingActionButton: FloatingActionButton(onPressed: (){},
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+        context.push(AppRoute.addTransaction),
       child: const Icon(Icons.add),),
     );
   }
