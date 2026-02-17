@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:personal_finance_tracker/core/enums/transaction_type.dart';
+import 'package:personal_finance_tracker/src/domain/transactions/entities/category_entity.dart';
 import 'package:personal_finance_tracker/src/domain/transactions/entities/transaction_entity.dart';
 import 'package:personal_finance_tracker/src/domain/transactions/repositories/transaction_repository.dart';
 
@@ -17,13 +19,25 @@ class AddTransactionPageBloc
     extends Bloc<AddTransactionPageEvent, AddTransactionPageState> {
   final TransactionRepository _repository;
 
-  AddTransactionPageBloc(this._repository) : super(AddTransactionPageState()) {
+  AddTransactionPageBloc(this._repository) : super(AddTransactionPageState(date: DateTime.now())) {
     on<AddTransactionPageEvent>((event, emit) async {
-      await event.when(
-        load: () => _onLoad(emit),
-        add: (entity) => _onAdd(entity, emit),
-        delete: (id) => _onDelete(id, emit),
-      );
+     if (event is _LoadEvent){
+       await _onLoad(emit);
+     } else if(event is _AddEvent){
+       await _onAdd(event.entity, emit);
+     } else if(event is _DeleteEvent){
+       await _onDelete(event.id, emit);
+     } else if(event is _AmountChangedEvent){
+       emit(state.copyWith(amount: event.amount));
+     } else if(event is _NoteChangedEvent){
+       emit(state.copyWith(note: event.note));
+     } else if(event is _TypeChangedEvent){
+       emit(state.copyWith(type: event.type));
+     } else if (event is _DateChangedEvent){
+       emit(state.copyWith(date: event.date));
+     } else if (event is _CategoryChangedEvent){
+       emit(state.copyWith(category: event.category));
+     }
     });
   }
 

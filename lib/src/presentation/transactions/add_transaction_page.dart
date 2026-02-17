@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:personal_finance_tracker/core/enums/transaction_type.dart';
-import 'package:personal_finance_tracker/src/domain/transactions/entities/category_entity.dart';
 import 'package:personal_finance_tracker/src/domain/transactions/entities/transaction_entity.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/add_transaction_page_bloc.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/widgets/amount_input.dart';
@@ -22,9 +20,6 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   final _formKey = GlobalKey<FormState>();
   final _amountController = TextEditingController();
   final _noteController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
-  TransactionType _selectedType = TransactionType.expense;
-  CategoryEntity? _selectedCategory;
 
   @override
   void dispose() {
@@ -55,76 +50,86 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('Add Transaction')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                TransactionTypeSelector(
-                  selectedType: _selectedType,
-                  onTypeChanged: (type) {
-                    setState(() {
-                      _selectedType = type;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-                AmountInput(controller: _amountController),
-                const SizedBox(height: 16),
-                CategorySelector(
-                  selectedCategory: _selectedCategory,
-                  onChanged: (category) {
-                    setState(() {
-                      _selectedCategory = category;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-                DateSelector(
-                  selectedDate: _selectedDate,
-                  onDateChanged: (date) {
-                    setState(() {
-                      _selectedDate = date;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _noteController,
-                  decoration: const InputDecoration(labelText: 'Note(optional'),
-                  maxLines: 2,
-                ),
-                const SizedBox(height: 24),
-
-                BlocBuilder<AddTransactionPageBloc, AddTransactionPageState>(
-                  builder: (context, state) {
-                    final isLoading = state.actionTask.maybeWhen(
-                      running: () => true,
-                      orElse: () => false,
-                    );
-                    return ElevatedButton(
-                      onPressed: isLoading ? null : _submitForm,
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
+        body: BlocBuilder<AddTransactionPageBloc, AddTransactionPageState>(
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: ListView(
+                  children: [
+                    TransactionTypeSelector(
+                      selectedType: state.type,
+                      onTypeChanged: (type) {
+                        context.read<AddTransactionPageBloc>().add(
+                          AddTransactionPageEvent.typeChanged(type),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    AmountInput(controller: _amountController),
+                    const SizedBox(height: 16),
+                    CategorySelector(
+                      selectedCategory: state.category,
+                      onChanged: (category) {
+                        if (category != null) {
+                          context.read<AddTransactionPageBloc>().add(
+                            AddTransactionPageEvent.categoryChanged(category),
+                          );
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    DateSelector(
+                      selectedDate: state.date ?? DateTime.now(),
+                      onDateChanged: (date) {
+                        context.read<AddTransactionPageBloc>().add(
+                          AddTransactionPageEvent.dateChanged(date),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _noteController,
+                      decoration: const InputDecoration(
+                        labelText: 'Note(optional',
                       ),
-                      child: isLoading
-                          ? const CircularProgressIndicator()
-                          : const Text('Save Transaction'),
-                    );
-                  },
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: 24),
+
+                    Builder(
+                      builder: (context) {
+                        final isLoading = state.actionTask.maybeWhen(
+                          running: () => true,
+                          orElse: () => false,
+                        );
+                        return ElevatedButton(
+                          onPressed: isLoading
+                              ? null
+                              : () => _submitForm(context, state),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 50),
+                          ),
+                          child: isLoading
+                              ? const CircularProgressIndicator()
+                              : const Text('Save Transaction'),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  void _submitForm() {
+  void _submitForm(BuildContext context, AddTransactionPageState state) {
     if (_formKey.currentState!.validate()) {
-      if (_selectedCategory == null) {
+      if (state.category == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Please select a category')),
         );
@@ -135,9 +140,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       final transactionEntity = TransactionEntity(
         id: Uuid().v4(),
         amount: amount,
-        category: _selectedCategory!.name,
-        date: _selectedDate,
-        type: _selectedType,
+        category: state.category!.name,
+        date: state.date ?? DateTime.now(),
+        type: state.type,
         note: _noteController.text.isEmpty ? null : _noteController.text,
       );
       context.read<AddTransactionPageBloc>().add(

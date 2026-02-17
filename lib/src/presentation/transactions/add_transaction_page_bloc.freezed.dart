@@ -21,6 +21,11 @@ mixin _$AddTransactionPageState {
   Task<void> get actionTask => throw _privateConstructorUsedError;
   List<TransactionEntity> get allTransactions =>
       throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
+  TransactionType get type => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+  CategoryEntity? get category => throw _privateConstructorUsedError;
 
   /// Create a copy of AddTransactionPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,10 +43,16 @@ abstract class $AddTransactionPageStateCopyWith<$Res> {
   $Res call(
       {Task<List<TransactionEntity>> transactionTask,
       Task<void> actionTask,
-      List<TransactionEntity> allTransactions});
+      List<TransactionEntity> allTransactions,
+      double amount,
+      String note,
+      TransactionType type,
+      DateTime? date,
+      CategoryEntity? category});
 
   $TaskCopyWith<List<TransactionEntity>, $Res> get transactionTask;
   $TaskCopyWith<void, $Res> get actionTask;
+  $CategoryEntityCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -63,6 +74,11 @@ class _$AddTransactionPageStateCopyWithImpl<$Res,
     Object? transactionTask = null,
     Object? actionTask = null,
     Object? allTransactions = null,
+    Object? amount = null,
+    Object? note = null,
+    Object? type = null,
+    Object? date = freezed,
+    Object? category = freezed,
   }) {
     return _then(_value.copyWith(
       transactionTask: null == transactionTask
@@ -77,6 +93,26 @@ class _$AddTransactionPageStateCopyWithImpl<$Res,
           ? _value.allTransactions
           : allTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionEntity>,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryEntity?,
     ) as $Val);
   }
 
@@ -100,6 +136,20 @@ class _$AddTransactionPageStateCopyWithImpl<$Res,
       return _then(_value.copyWith(actionTask: value) as $Val);
     });
   }
+
+  /// Create a copy of AddTransactionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryEntityCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryEntityCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -114,12 +164,19 @@ abstract class _$$AddTransactionPageStateImplCopyWith<$Res>
   $Res call(
       {Task<List<TransactionEntity>> transactionTask,
       Task<void> actionTask,
-      List<TransactionEntity> allTransactions});
+      List<TransactionEntity> allTransactions,
+      double amount,
+      String note,
+      TransactionType type,
+      DateTime? date,
+      CategoryEntity? category});
 
   @override
   $TaskCopyWith<List<TransactionEntity>, $Res> get transactionTask;
   @override
   $TaskCopyWith<void, $Res> get actionTask;
+  @override
+  $CategoryEntityCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -140,6 +197,11 @@ class __$$AddTransactionPageStateImplCopyWithImpl<$Res>
     Object? transactionTask = null,
     Object? actionTask = null,
     Object? allTransactions = null,
+    Object? amount = null,
+    Object? note = null,
+    Object? type = null,
+    Object? date = freezed,
+    Object? category = freezed,
   }) {
     return _then(_$AddTransactionPageStateImpl(
       transactionTask: null == transactionTask
@@ -154,6 +216,26 @@ class __$$AddTransactionPageStateImplCopyWithImpl<$Res>
           ? _value._allTransactions
           : allTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionEntity>,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryEntity?,
     ));
   }
 }
@@ -164,7 +246,12 @@ class _$AddTransactionPageStateImpl extends _AddTransactionPageState {
   const _$AddTransactionPageStateImpl(
       {this.transactionTask = const Task.idle(),
       this.actionTask = const Task.idle(),
-      final List<TransactionEntity> allTransactions = const []})
+      final List<TransactionEntity> allTransactions = const [],
+      this.amount = 0.0,
+      this.note = '',
+      this.type = TransactionType.expense,
+      this.date,
+      this.category})
       : _allTransactions = allTransactions,
         super._();
 
@@ -184,8 +271,22 @@ class _$AddTransactionPageStateImpl extends _AddTransactionPageState {
   }
 
   @override
+  @JsonKey()
+  final double amount;
+  @override
+  @JsonKey()
+  final String note;
+  @override
+  @JsonKey()
+  final TransactionType type;
+  @override
+  final DateTime? date;
+  @override
+  final CategoryEntity? category;
+
+  @override
   String toString() {
-    return 'AddTransactionPageState(transactionTask: $transactionTask, actionTask: $actionTask, allTransactions: $allTransactions)';
+    return 'AddTransactionPageState(transactionTask: $transactionTask, actionTask: $actionTask, allTransactions: $allTransactions, amount: $amount, note: $note, type: $type, date: $date, category: $category)';
   }
 
   @override
@@ -198,12 +299,26 @@ class _$AddTransactionPageStateImpl extends _AddTransactionPageState {
             (identical(other.actionTask, actionTask) ||
                 other.actionTask == actionTask) &&
             const DeepCollectionEquality()
-                .equals(other._allTransactions, _allTransactions));
+                .equals(other._allTransactions, _allTransactions) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transactionTask, actionTask,
-      const DeepCollectionEquality().hash(_allTransactions));
+  int get hashCode => Object.hash(
+      runtimeType,
+      transactionTask,
+      actionTask,
+      const DeepCollectionEquality().hash(_allTransactions),
+      amount,
+      note,
+      type,
+      date,
+      category);
 
   /// Create a copy of AddTransactionPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -217,10 +332,14 @@ class _$AddTransactionPageStateImpl extends _AddTransactionPageState {
 
 abstract class _AddTransactionPageState extends AddTransactionPageState {
   const factory _AddTransactionPageState(
-          {final Task<List<TransactionEntity>> transactionTask,
-          final Task<void> actionTask,
-          final List<TransactionEntity> allTransactions}) =
-      _$AddTransactionPageStateImpl;
+      {final Task<List<TransactionEntity>> transactionTask,
+      final Task<void> actionTask,
+      final List<TransactionEntity> allTransactions,
+      final double amount,
+      final String note,
+      final TransactionType type,
+      final DateTime? date,
+      final CategoryEntity? category}) = _$AddTransactionPageStateImpl;
   const _AddTransactionPageState._() : super._();
 
   @override
@@ -229,6 +348,16 @@ abstract class _AddTransactionPageState extends AddTransactionPageState {
   Task<void> get actionTask;
   @override
   List<TransactionEntity> get allTransactions;
+  @override
+  double get amount;
+  @override
+  String get note;
+  @override
+  TransactionType get type;
+  @override
+  DateTime? get date;
+  @override
+  CategoryEntity? get category;
 
   /// Create a copy of AddTransactionPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -245,6 +374,11 @@ mixin _$AddTransactionPageEvent {
     required TResult Function() load,
     required TResult Function(TransactionEntity entity) add,
     required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -252,6 +386,11 @@ mixin _$AddTransactionPageEvent {
     TResult? Function()? load,
     TResult? Function(TransactionEntity entity)? add,
     TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -259,6 +398,11 @@ mixin _$AddTransactionPageEvent {
     TResult Function()? load,
     TResult Function(TransactionEntity entity)? add,
     TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -266,21 +410,36 @@ mixin _$AddTransactionPageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_AddEvent value) add,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_AddEvent value)? add,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_AddEvent value)? add,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -352,6 +511,11 @@ class _$LoadEventImpl implements _LoadEvent {
     required TResult Function() load,
     required TResult Function(TransactionEntity entity) add,
     required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
   }) {
     return load();
   }
@@ -362,6 +526,11 @@ class _$LoadEventImpl implements _LoadEvent {
     TResult? Function()? load,
     TResult? Function(TransactionEntity entity)? add,
     TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
   }) {
     return load?.call();
   }
@@ -372,6 +541,11 @@ class _$LoadEventImpl implements _LoadEvent {
     TResult Function()? load,
     TResult Function(TransactionEntity entity)? add,
     TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -385,7 +559,12 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_AddEvent value) add,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
   }) {
     return load(this);
   }
@@ -395,7 +574,12 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_AddEvent value)? add,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
   }) {
     return load?.call(this);
   }
@@ -405,7 +589,12 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_AddEvent value)? add,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -502,6 +691,11 @@ class _$AddEventImpl implements _AddEvent {
     required TResult Function() load,
     required TResult Function(TransactionEntity entity) add,
     required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
   }) {
     return add(entity);
   }
@@ -512,6 +706,11 @@ class _$AddEventImpl implements _AddEvent {
     TResult? Function()? load,
     TResult? Function(TransactionEntity entity)? add,
     TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
   }) {
     return add?.call(entity);
   }
@@ -522,6 +721,11 @@ class _$AddEventImpl implements _AddEvent {
     TResult Function()? load,
     TResult Function(TransactionEntity entity)? add,
     TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -535,7 +739,12 @@ class _$AddEventImpl implements _AddEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_AddEvent value) add,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
   }) {
     return add(this);
   }
@@ -545,7 +754,12 @@ class _$AddEventImpl implements _AddEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_AddEvent value)? add,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
   }) {
     return add?.call(this);
   }
@@ -555,7 +769,12 @@ class _$AddEventImpl implements _AddEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_AddEvent value)? add,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -578,20 +797,20 @@ abstract class _AddEvent implements AddTransactionPageEvent {
 }
 
 /// @nodoc
-abstract class _$$DeleteImplCopyWith<$Res> {
-  factory _$$DeleteImplCopyWith(
-          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
-      __$$DeleteImplCopyWithImpl<$Res>;
+abstract class _$$DeleteEventImplCopyWith<$Res> {
+  factory _$$DeleteEventImplCopyWith(
+          _$DeleteEventImpl value, $Res Function(_$DeleteEventImpl) then) =
+      __$$DeleteEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class __$$DeleteImplCopyWithImpl<$Res>
-    extends _$AddTransactionPageEventCopyWithImpl<$Res, _$DeleteImpl>
-    implements _$$DeleteImplCopyWith<$Res> {
-  __$$DeleteImplCopyWithImpl(
-      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+class __$$DeleteEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res, _$DeleteEventImpl>
+    implements _$$DeleteEventImplCopyWith<$Res> {
+  __$$DeleteEventImplCopyWithImpl(
+      _$DeleteEventImpl _value, $Res Function(_$DeleteEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AddTransactionPageEvent
@@ -601,7 +820,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$DeleteImpl(
+    return _then(_$DeleteEventImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -612,8 +831,8 @@ class __$$DeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteImpl implements _Delete {
-  const _$DeleteImpl(this.id);
+class _$DeleteEventImpl implements _DeleteEvent {
+  const _$DeleteEventImpl(this.id);
 
   @override
   final String id;
@@ -627,7 +846,7 @@ class _$DeleteImpl implements _Delete {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteImpl &&
+            other is _$DeleteEventImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -639,8 +858,8 @@ class _$DeleteImpl implements _Delete {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
+      __$$DeleteEventImplCopyWithImpl<_$DeleteEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -648,6 +867,11 @@ class _$DeleteImpl implements _Delete {
     required TResult Function() load,
     required TResult Function(TransactionEntity entity) add,
     required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
   }) {
     return delete(id);
   }
@@ -658,6 +882,11 @@ class _$DeleteImpl implements _Delete {
     TResult? Function()? load,
     TResult? Function(TransactionEntity entity)? add,
     TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
   }) {
     return delete?.call(id);
   }
@@ -668,6 +897,11 @@ class _$DeleteImpl implements _Delete {
     TResult Function()? load,
     TResult Function(TransactionEntity entity)? add,
     TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -681,7 +915,12 @@ class _$DeleteImpl implements _Delete {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_AddEvent value) add,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
   }) {
     return delete(this);
   }
@@ -691,7 +930,12 @@ class _$DeleteImpl implements _Delete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_AddEvent value)? add,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
   }) {
     return delete?.call(this);
   }
@@ -701,7 +945,12 @@ class _$DeleteImpl implements _Delete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_AddEvent value)? add,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -711,14 +960,918 @@ class _$DeleteImpl implements _Delete {
   }
 }
 
-abstract class _Delete implements AddTransactionPageEvent {
-  const factory _Delete(final String id) = _$DeleteImpl;
+abstract class _DeleteEvent implements AddTransactionPageEvent {
+  const factory _DeleteEvent(final String id) = _$DeleteEventImpl;
 
   String get id;
 
   /// Create a copy of AddTransactionPageEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AmountChangedEventImplCopyWith<$Res> {
+  factory _$$AmountChangedEventImplCopyWith(_$AmountChangedEventImpl value,
+          $Res Function(_$AmountChangedEventImpl) then) =
+      __$$AmountChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double amount});
+}
+
+/// @nodoc
+class __$$AmountChangedEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res,
+        _$AmountChangedEventImpl>
+    implements _$$AmountChangedEventImplCopyWith<$Res> {
+  __$$AmountChangedEventImplCopyWithImpl(_$AmountChangedEventImpl _value,
+      $Res Function(_$AmountChangedEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+  }) {
+    return _then(_$AmountChangedEventImpl(
+      null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AmountChangedEventImpl implements _AmountChangedEvent {
+  const _$AmountChangedEventImpl(this.amount);
+
+  @override
+  final double amount;
+
+  @override
+  String toString() {
+    return 'AddTransactionPageEvent.amountChanged(amount: $amount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AmountChangedEventImpl &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, amount);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AmountChangedEventImplCopyWith<_$AmountChangedEventImpl> get copyWith =>
+      __$$AmountChangedEventImplCopyWithImpl<_$AmountChangedEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionEntity entity) add,
+    required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
+  }) {
+    return amountChanged(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionEntity entity)? add,
+    TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
+  }) {
+    return amountChanged?.call(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionEntity entity)? add,
+    TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (amountChanged != null) {
+      return amountChanged(amount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_AddEvent value) add,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
+  }) {
+    return amountChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_AddEvent value)? add,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
+  }) {
+    return amountChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_AddEvent value)? add,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (amountChanged != null) {
+      return amountChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AmountChangedEvent implements AddTransactionPageEvent {
+  const factory _AmountChangedEvent(final double amount) =
+      _$AmountChangedEventImpl;
+
+  double get amount;
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AmountChangedEventImplCopyWith<_$AmountChangedEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NoteChangedEventImplCopyWith<$Res> {
+  factory _$$NoteChangedEventImplCopyWith(_$NoteChangedEventImpl value,
+          $Res Function(_$NoteChangedEventImpl) then) =
+      __$$NoteChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String note});
+}
+
+/// @nodoc
+class __$$NoteChangedEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res, _$NoteChangedEventImpl>
+    implements _$$NoteChangedEventImplCopyWith<$Res> {
+  __$$NoteChangedEventImplCopyWithImpl(_$NoteChangedEventImpl _value,
+      $Res Function(_$NoteChangedEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = null,
+  }) {
+    return _then(_$NoteChangedEventImpl(
+      null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NoteChangedEventImpl implements _NoteChangedEvent {
+  const _$NoteChangedEventImpl(this.note);
+
+  @override
+  final String note;
+
+  @override
+  String toString() {
+    return 'AddTransactionPageEvent.noteChanged(note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NoteChangedEventImpl &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, note);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NoteChangedEventImplCopyWith<_$NoteChangedEventImpl> get copyWith =>
+      __$$NoteChangedEventImplCopyWithImpl<_$NoteChangedEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionEntity entity) add,
+    required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
+  }) {
+    return noteChanged(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionEntity entity)? add,
+    TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
+  }) {
+    return noteChanged?.call(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionEntity entity)? add,
+    TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (noteChanged != null) {
+      return noteChanged(note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_AddEvent value) add,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
+  }) {
+    return noteChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_AddEvent value)? add,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
+  }) {
+    return noteChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_AddEvent value)? add,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (noteChanged != null) {
+      return noteChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoteChangedEvent implements AddTransactionPageEvent {
+  const factory _NoteChangedEvent(final String note) = _$NoteChangedEventImpl;
+
+  String get note;
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NoteChangedEventImplCopyWith<_$NoteChangedEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TypeChangedEventImplCopyWith<$Res> {
+  factory _$$TypeChangedEventImplCopyWith(_$TypeChangedEventImpl value,
+          $Res Function(_$TypeChangedEventImpl) then) =
+      __$$TypeChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TransactionType type});
+}
+
+/// @nodoc
+class __$$TypeChangedEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res, _$TypeChangedEventImpl>
+    implements _$$TypeChangedEventImplCopyWith<$Res> {
+  __$$TypeChangedEventImplCopyWithImpl(_$TypeChangedEventImpl _value,
+      $Res Function(_$TypeChangedEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$TypeChangedEventImpl(
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TypeChangedEventImpl implements _TypeChangedEvent {
+  const _$TypeChangedEventImpl(this.type);
+
+  @override
+  final TransactionType type;
+
+  @override
+  String toString() {
+    return 'AddTransactionPageEvent.typeChanged(type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TypeChangedEventImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TypeChangedEventImplCopyWith<_$TypeChangedEventImpl> get copyWith =>
+      __$$TypeChangedEventImplCopyWithImpl<_$TypeChangedEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionEntity entity) add,
+    required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
+  }) {
+    return typeChanged(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionEntity entity)? add,
+    TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
+  }) {
+    return typeChanged?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionEntity entity)? add,
+    TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (typeChanged != null) {
+      return typeChanged(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_AddEvent value) add,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
+  }) {
+    return typeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_AddEvent value)? add,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
+  }) {
+    return typeChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_AddEvent value)? add,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (typeChanged != null) {
+      return typeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TypeChangedEvent implements AddTransactionPageEvent {
+  const factory _TypeChangedEvent(final TransactionType type) =
+      _$TypeChangedEventImpl;
+
+  TransactionType get type;
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TypeChangedEventImplCopyWith<_$TypeChangedEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DateChangedEventImplCopyWith<$Res> {
+  factory _$$DateChangedEventImplCopyWith(_$DateChangedEventImpl value,
+          $Res Function(_$DateChangedEventImpl) then) =
+      __$$DateChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
+}
+
+/// @nodoc
+class __$$DateChangedEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res, _$DateChangedEventImpl>
+    implements _$$DateChangedEventImplCopyWith<$Res> {
+  __$$DateChangedEventImplCopyWithImpl(_$DateChangedEventImpl _value,
+      $Res Function(_$DateChangedEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+  }) {
+    return _then(_$DateChangedEventImpl(
+      null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DateChangedEventImpl implements _DateChangedEvent {
+  const _$DateChangedEventImpl(this.date);
+
+  @override
+  final DateTime date;
+
+  @override
+  String toString() {
+    return 'AddTransactionPageEvent.dateChanged(date: $date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DateChangedEventImpl &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, date);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DateChangedEventImplCopyWith<_$DateChangedEventImpl> get copyWith =>
+      __$$DateChangedEventImplCopyWithImpl<_$DateChangedEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionEntity entity) add,
+    required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
+  }) {
+    return dateChanged(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionEntity entity)? add,
+    TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
+  }) {
+    return dateChanged?.call(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionEntity entity)? add,
+    TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (dateChanged != null) {
+      return dateChanged(date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_AddEvent value) add,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
+  }) {
+    return dateChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_AddEvent value)? add,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
+  }) {
+    return dateChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_AddEvent value)? add,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (dateChanged != null) {
+      return dateChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DateChangedEvent implements AddTransactionPageEvent {
+  const factory _DateChangedEvent(final DateTime date) = _$DateChangedEventImpl;
+
+  DateTime get date;
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DateChangedEventImplCopyWith<_$DateChangedEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CategoryChangedEventImplCopyWith<$Res> {
+  factory _$$CategoryChangedEventImplCopyWith(_$CategoryChangedEventImpl value,
+          $Res Function(_$CategoryChangedEventImpl) then) =
+      __$$CategoryChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CategoryEntity category});
+
+  $CategoryEntityCopyWith<$Res> get category;
+}
+
+/// @nodoc
+class __$$CategoryChangedEventImplCopyWithImpl<$Res>
+    extends _$AddTransactionPageEventCopyWithImpl<$Res,
+        _$CategoryChangedEventImpl>
+    implements _$$CategoryChangedEventImplCopyWith<$Res> {
+  __$$CategoryChangedEventImplCopyWithImpl(_$CategoryChangedEventImpl _value,
+      $Res Function(_$CategoryChangedEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$CategoryChangedEventImpl(
+      null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryEntity,
+    ));
+  }
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryEntityCopyWith<$Res> get category {
+    return $CategoryEntityCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CategoryChangedEventImpl implements _CategoryChangedEvent {
+  const _$CategoryChangedEventImpl(this.category);
+
+  @override
+  final CategoryEntity category;
+
+  @override
+  String toString() {
+    return 'AddTransactionPageEvent.categoryChanged(category: $category)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CategoryChangedEventImpl &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CategoryChangedEventImplCopyWith<_$CategoryChangedEventImpl>
+      get copyWith =>
+          __$$CategoryChangedEventImplCopyWithImpl<_$CategoryChangedEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionEntity entity) add,
+    required TResult Function(String id) delete,
+    required TResult Function(double amount) amountChanged,
+    required TResult Function(String note) noteChanged,
+    required TResult Function(TransactionType type) typeChanged,
+    required TResult Function(DateTime date) dateChanged,
+    required TResult Function(CategoryEntity category) categoryChanged,
+  }) {
+    return categoryChanged(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionEntity entity)? add,
+    TResult? Function(String id)? delete,
+    TResult? Function(double amount)? amountChanged,
+    TResult? Function(String note)? noteChanged,
+    TResult? Function(TransactionType type)? typeChanged,
+    TResult? Function(DateTime date)? dateChanged,
+    TResult? Function(CategoryEntity category)? categoryChanged,
+  }) {
+    return categoryChanged?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionEntity entity)? add,
+    TResult Function(String id)? delete,
+    TResult Function(double amount)? amountChanged,
+    TResult Function(String note)? noteChanged,
+    TResult Function(TransactionType type)? typeChanged,
+    TResult Function(DateTime date)? dateChanged,
+    TResult Function(CategoryEntity category)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (categoryChanged != null) {
+      return categoryChanged(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_AddEvent value) add,
+    required TResult Function(_DeleteEvent value) delete,
+    required TResult Function(_AmountChangedEvent value) amountChanged,
+    required TResult Function(_NoteChangedEvent value) noteChanged,
+    required TResult Function(_TypeChangedEvent value) typeChanged,
+    required TResult Function(_DateChangedEvent value) dateChanged,
+    required TResult Function(_CategoryChangedEvent value) categoryChanged,
+  }) {
+    return categoryChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_AddEvent value)? add,
+    TResult? Function(_DeleteEvent value)? delete,
+    TResult? Function(_AmountChangedEvent value)? amountChanged,
+    TResult? Function(_NoteChangedEvent value)? noteChanged,
+    TResult? Function(_TypeChangedEvent value)? typeChanged,
+    TResult? Function(_DateChangedEvent value)? dateChanged,
+    TResult? Function(_CategoryChangedEvent value)? categoryChanged,
+  }) {
+    return categoryChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_AddEvent value)? add,
+    TResult Function(_DeleteEvent value)? delete,
+    TResult Function(_AmountChangedEvent value)? amountChanged,
+    TResult Function(_NoteChangedEvent value)? noteChanged,
+    TResult Function(_TypeChangedEvent value)? typeChanged,
+    TResult Function(_DateChangedEvent value)? dateChanged,
+    TResult Function(_CategoryChangedEvent value)? categoryChanged,
+    required TResult orElse(),
+  }) {
+    if (categoryChanged != null) {
+      return categoryChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CategoryChangedEvent implements AddTransactionPageEvent {
+  const factory _CategoryChangedEvent(final CategoryEntity category) =
+      _$CategoryChangedEventImpl;
+
+  CategoryEntity get category;
+
+  /// Create a copy of AddTransactionPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CategoryChangedEventImplCopyWith<_$CategoryChangedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

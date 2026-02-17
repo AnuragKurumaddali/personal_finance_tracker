@@ -53,6 +53,8 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     try{
       await _repository.addCategory(entity);
       add(const CategoryEvent.load());
-    }catch(e){}
+    }catch(e){
+      emit(state.copyWith(categoriesTask: Task.failed(e)));
+    }
   }
 }
