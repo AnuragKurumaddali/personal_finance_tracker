@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:personal_finance_tracker/core/enums/transaction_type.dart';
 import 'package:personal_finance_tracker/src/domain/transactions/entities/transaction_entity.dart';
 import 'package:personal_finance_tracker/src/presentation/home/home_page_bloc.dart';
+import 'package:personal_finance_tracker/src/presentation/settings/settings_page_bloc.dart';
 
 class HomeTransactionList extends StatelessWidget {
   final List<TransactionEntity> transactions;
@@ -15,6 +16,8 @@ class HomeTransactionList extends StatelessWidget {
     if (transactions.isEmpty) {
       return const Center(child: Text('No transactions found'));
     }
+    final currency = context.select((SettingsPageBloc bloc) => bloc.state.currency);
+
     return ListView.builder(
       itemCount: transactions.length,
       itemBuilder: (context, index) {
@@ -50,7 +53,7 @@ class HomeTransactionList extends StatelessWidget {
             title: Text(transaction.category),
             subtitle: Text(DateFormat.yMMMd().format(transaction.date)),
             trailing: Text(
-              NumberFormat.currency(symbol: '\$').format(transaction.amount),
+              NumberFormat.currency(symbol: currency).format(transaction.amount),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: transaction.type == TransactionType.income

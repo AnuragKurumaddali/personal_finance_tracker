@@ -27,8 +27,12 @@ class HomePage extends StatelessWidget {
         ],),);
       },),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-        context.push(AppRoute.addTransaction),
+        onPressed: () async {
+          await context.push(AppRoute.addTransaction);
+          if(context.mounted){
+            context.read<HomePageBloc>().add(const HomePageEvent.load());
+          }
+        },
       child: const Icon(Icons.add),),
     );
   }

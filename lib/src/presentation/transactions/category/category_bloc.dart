@@ -25,7 +25,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     });
   }
 
-  _onLoad(Emitter<CategoryState> emit) async {
+  Future<void> _onLoad(Emitter<CategoryState> emit) async {
     emit(state.copyWith(categoriesTask: const Task.running()));
     try{
       final categories = await _repository.getCategories();
@@ -49,7 +49,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     }
   }
 
-  _onAdd(CategoryEntity entity, Emitter<CategoryState> emit) async {
+  Future<void> _onAdd(CategoryEntity entity, Emitter<CategoryState> emit) async {
     try{
       await _repository.addCategory(entity);
       add(const CategoryEvent.load());

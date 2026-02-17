@@ -7,13 +7,20 @@ class ThemeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = context.select((SettingsPageBloc bloc) => bloc.state.themeMode == ThemeMode.dark,);
+    final isDark = context.select(
+      (SettingsPageBloc bloc) => bloc.state.themeMode == ThemeMode.dark,
+    );
 
     return ListTile(
       title: const Text('Dark Mode'),
-      trailing: Switch(value: isDark, onChanged: (_) {
-        context.read<SettingsPageBloc>().add(const SettingsPageEvent.toggleTheme());
-      },),
+      trailing: Switch(
+        value: isDark,
+        onChanged: (_) {
+          context.read<SettingsPageBloc>().add(
+            const SettingsPageEvent.toggleTheme(),
+          );
+        },
+      ),
     );
   }
 }

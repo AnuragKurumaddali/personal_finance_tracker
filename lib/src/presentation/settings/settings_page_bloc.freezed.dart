@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SettingsPageState {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
 
   /// Create a copy of SettingsPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $SettingsPageStateCopyWith<$Res> {
           SettingsPageState value, $Res Function(SettingsPageState) then) =
       _$SettingsPageStateCopyWithImpl<$Res, SettingsPageState>;
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({ThemeMode themeMode, String currency});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$SettingsPageStateCopyWithImpl<$Res, $Val extends SettingsPageState>
   @override
   $Res call({
     Object? themeMode = null,
+    Object? currency = null,
   }) {
     return _then(_value.copyWith(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$SettingsPageStateImplCopyWith<$Res>
       __$$SettingsPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({ThemeMode themeMode, String currency});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class __$$SettingsPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? themeMode = null,
+    Object? currency = null,
   }) {
     return _then(_$SettingsPageStateImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -98,15 +109,19 @@ class __$$SettingsPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SettingsPageStateImpl implements _SettingsPageState {
-  const _$SettingsPageStateImpl({this.themeMode = ThemeMode.system});
+  const _$SettingsPageStateImpl(
+      {this.themeMode = ThemeMode.system, this.currency = '\$'});
 
   @override
   @JsonKey()
   final ThemeMode themeMode;
+  @override
+  @JsonKey()
+  final String currency;
 
   @override
   String toString() {
-    return 'SettingsPageState(themeMode: $themeMode)';
+    return 'SettingsPageState(themeMode: $themeMode, currency: $currency)';
   }
 
   @override
@@ -115,11 +130,13 @@ class _$SettingsPageStateImpl implements _SettingsPageState {
         (other.runtimeType == runtimeType &&
             other is _$SettingsPageStateImpl &&
             (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
+                other.themeMode == themeMode) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
+  int get hashCode => Object.hash(runtimeType, themeMode, currency);
 
   /// Create a copy of SettingsPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -132,11 +149,14 @@ class _$SettingsPageStateImpl implements _SettingsPageState {
 }
 
 abstract class _SettingsPageState implements SettingsPageState {
-  const factory _SettingsPageState({final ThemeMode themeMode}) =
-      _$SettingsPageStateImpl;
+  const factory _SettingsPageState(
+      {final ThemeMode themeMode,
+      final String currency}) = _$SettingsPageStateImpl;
 
   @override
   ThemeMode get themeMode;
+  @override
+  String get currency;
 
   /// Create a copy of SettingsPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -152,18 +172,21 @@ mixin _$SettingsPageEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() toggleTheme,
+    required TResult Function(String currency) changeCurrency,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? toggleTheme,
+    TResult? Function(String currency)? changeCurrency,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? toggleTheme,
+    TResult Function(String currency)? changeCurrency,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,18 +194,21 @@ mixin _$SettingsPageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_ToggleThemeEvent value) toggleTheme,
+    required TResult Function(_ChangeCurrencyEvent value) changeCurrency,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult? Function(_ChangeCurrencyEvent value)? changeCurrency,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult Function(_ChangeCurrencyEvent value)? changeCurrency,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -252,6 +278,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() toggleTheme,
+    required TResult Function(String currency) changeCurrency,
   }) {
     return load();
   }
@@ -261,6 +288,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? toggleTheme,
+    TResult? Function(String currency)? changeCurrency,
   }) {
     return load?.call();
   }
@@ -270,6 +298,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? toggleTheme,
+    TResult Function(String currency)? changeCurrency,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -283,6 +312,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_ToggleThemeEvent value) toggleTheme,
+    required TResult Function(_ChangeCurrencyEvent value) changeCurrency,
   }) {
     return load(this);
   }
@@ -292,6 +322,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult? Function(_ChangeCurrencyEvent value)? changeCurrency,
   }) {
     return load?.call(this);
   }
@@ -301,6 +332,7 @@ class _$LoadEventImpl implements _LoadEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult Function(_ChangeCurrencyEvent value)? changeCurrency,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -357,6 +389,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function() toggleTheme,
+    required TResult Function(String currency) changeCurrency,
   }) {
     return toggleTheme();
   }
@@ -366,6 +399,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function()? toggleTheme,
+    TResult? Function(String currency)? changeCurrency,
   }) {
     return toggleTheme?.call();
   }
@@ -375,6 +409,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function()? toggleTheme,
+    TResult Function(String currency)? changeCurrency,
     required TResult orElse(),
   }) {
     if (toggleTheme != null) {
@@ -388,6 +423,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_ToggleThemeEvent value) toggleTheme,
+    required TResult Function(_ChangeCurrencyEvent value) changeCurrency,
   }) {
     return toggleTheme(this);
   }
@@ -397,6 +433,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadEvent value)? load,
     TResult? Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult? Function(_ChangeCurrencyEvent value)? changeCurrency,
   }) {
     return toggleTheme?.call(this);
   }
@@ -406,6 +443,7 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult Function(_ChangeCurrencyEvent value)? changeCurrency,
     required TResult orElse(),
   }) {
     if (toggleTheme != null) {
@@ -417,4 +455,153 @@ class _$ToggleThemeEventImpl implements _ToggleThemeEvent {
 
 abstract class _ToggleThemeEvent implements SettingsPageEvent {
   const factory _ToggleThemeEvent() = _$ToggleThemeEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeCurrencyEventImplCopyWith<$Res> {
+  factory _$$ChangeCurrencyEventImplCopyWith(_$ChangeCurrencyEventImpl value,
+          $Res Function(_$ChangeCurrencyEventImpl) then) =
+      __$$ChangeCurrencyEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String currency});
+}
+
+/// @nodoc
+class __$$ChangeCurrencyEventImplCopyWithImpl<$Res>
+    extends _$SettingsPageEventCopyWithImpl<$Res, _$ChangeCurrencyEventImpl>
+    implements _$$ChangeCurrencyEventImplCopyWith<$Res> {
+  __$$ChangeCurrencyEventImplCopyWithImpl(_$ChangeCurrencyEventImpl _value,
+      $Res Function(_$ChangeCurrencyEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SettingsPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currency = null,
+  }) {
+    return _then(_$ChangeCurrencyEventImpl(
+      null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeCurrencyEventImpl implements _ChangeCurrencyEvent {
+  const _$ChangeCurrencyEventImpl(this.currency);
+
+  @override
+  final String currency;
+
+  @override
+  String toString() {
+    return 'SettingsPageEvent.changeCurrency(currency: $currency)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeCurrencyEventImpl &&
+            (identical(other.currency, currency) ||
+                other.currency == currency));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, currency);
+
+  /// Create a copy of SettingsPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeCurrencyEventImplCopyWith<_$ChangeCurrencyEventImpl> get copyWith =>
+      __$$ChangeCurrencyEventImplCopyWithImpl<_$ChangeCurrencyEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() toggleTheme,
+    required TResult Function(String currency) changeCurrency,
+  }) {
+    return changeCurrency(currency);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? toggleTheme,
+    TResult? Function(String currency)? changeCurrency,
+  }) {
+    return changeCurrency?.call(currency);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? toggleTheme,
+    TResult Function(String currency)? changeCurrency,
+    required TResult orElse(),
+  }) {
+    if (changeCurrency != null) {
+      return changeCurrency(currency);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_ToggleThemeEvent value) toggleTheme,
+    required TResult Function(_ChangeCurrencyEvent value) changeCurrency,
+  }) {
+    return changeCurrency(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadEvent value)? load,
+    TResult? Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult? Function(_ChangeCurrencyEvent value)? changeCurrency,
+  }) {
+    return changeCurrency?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_ToggleThemeEvent value)? toggleTheme,
+    TResult Function(_ChangeCurrencyEvent value)? changeCurrency,
+    required TResult orElse(),
+  }) {
+    if (changeCurrency != null) {
+      return changeCurrency(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCurrencyEvent implements SettingsPageEvent {
+  const factory _ChangeCurrencyEvent(final String currency) =
+      _$ChangeCurrencyEventImpl;
+
+  String get currency;
+
+  /// Create a copy of SettingsPageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeCurrencyEventImplCopyWith<_$ChangeCurrencyEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
