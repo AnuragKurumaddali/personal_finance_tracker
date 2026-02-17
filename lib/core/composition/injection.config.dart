@@ -24,6 +24,7 @@ import '../../src/domain/transactions/repositories/category_repository.dart'
 import '../../src/domain/transactions/repositories/transaction_repository.dart'
     as _i342;
 import '../../src/presentation/home/home_page_bloc.dart' as _i982;
+import '../../src/presentation/settings/settings_page_bloc.dart' as _i309;
 import '../../src/presentation/transactions/add_transaction_page_bloc.dart'
     as _i802;
 import '../../src/presentation/transactions/category/category_bloc.dart'
@@ -65,6 +66,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i982.HomePageBloc(gh<_i342.TransactionRepository>()));
     gh.factory<_i802.AddTransactionPageBloc>(
         () => _i802.AddTransactionPageBloc(gh<_i342.TransactionRepository>()));
+    gh.factory<_i309.SettingsPageBloc>(
+        () => _i309.SettingsPageBloc(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i491.CategoryRepository>(() =>
         _i387.CategoryRepositoryImpl(
             gh<_i979.Box<_i429.CategoryModel>>(instanceName: 'CategoryBox')));

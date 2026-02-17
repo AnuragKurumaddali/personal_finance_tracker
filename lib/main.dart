@@ -7,6 +7,7 @@ import 'package:personal_finance_tracker/core/theme/app_theme.dart';
 import 'package:personal_finance_tracker/src/data/transactions/models/category_model.dart';
 import 'package:personal_finance_tracker/src/data/transactions/models/transaction_model.dart';
 import 'package:personal_finance_tracker/src/presentation/home/home_page_bloc.dart';
+import 'package:personal_finance_tracker/src/presentation/settings/settings_page_bloc.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/add_transaction_page_bloc.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/category/category_bloc.dart';
 
@@ -30,16 +31,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => getIt<SettingsPageBloc>()..add(const SettingsPageEvent.load()),),
         BlocProvider(create: (context) => getIt<AddTransactionPageBloc>()..add(const AddTransactionPageEvent.load()),),
         BlocProvider(create: (context) => getIt<CategoryBloc>()..add(const CategoryEvent.load()),),
         BlocProvider(create: (context) => getIt<HomePageBloc>()..add(const HomePageEvent.load()),),
       ],
-      child: MaterialApp.router(
-        title: 'Personal Finance Tracker',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        routerConfig: AppRouter.router,
-        debugShowCheckedModeBanner: false,
+      child: BlocBuilder<SettingsPageBloc, SettingsPageState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Personal Finance Tracker',
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state.themeMode,
+            routerConfig: AppRouter.router,
+            debugShowCheckedModeBanner: false,
+          );
+        }
       ),
     );
   }
