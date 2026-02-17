@@ -6,6 +6,7 @@ import 'package:personal_finance_tracker/core/router/app_router.dart';
 import 'package:personal_finance_tracker/core/theme/app_theme.dart';
 import 'package:personal_finance_tracker/src/data/transactions/models/category_model.dart';
 import 'package:personal_finance_tracker/src/data/transactions/models/transaction_model.dart';
+import 'package:personal_finance_tracker/src/presentation/home/home_page_bloc.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/add_transaction_page_bloc.dart';
 import 'package:personal_finance_tracker/src/presentation/transactions/category/category_bloc.dart';
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => getIt<AddTransactionPageBloc>()..add(const AddTransactionPageEvent.load()),),
         BlocProvider(create: (context) => getIt<CategoryBloc>()..add(const CategoryEvent.load()),),
+        BlocProvider(create: (context) => getIt<HomePageBloc>()..add(const HomePageEvent.load()),),
       ],
       child: MaterialApp.router(
         title: 'Personal Finance Tracker',
