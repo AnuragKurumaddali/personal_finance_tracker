@@ -16,7 +16,9 @@ class HomeTransactionList extends StatelessWidget {
     if (transactions.isEmpty) {
       return const Center(child: Text('No transactions found'));
     }
-    final currency = context.select((SettingsPageBloc bloc) => bloc.state.currency);
+    final currency = context.select(
+      (SettingsPageBloc bloc) => bloc.state.currency,
+    );
 
     return ListView.builder(
       itemCount: transactions.length,
@@ -52,13 +54,20 @@ class HomeTransactionList extends StatelessWidget {
             ),
             title: Text(transaction.category),
             subtitle: Text(DateFormat.yMMMd().format(transaction.date)),
-            trailing: Text(
-              NumberFormat.currency(symbol: currency).format(transaction.amount),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: transaction.type == TransactionType.income
-                    ? Colors.green
-                    : null,
+            trailing: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 100),
+              child: Text(
+                NumberFormat.currency(
+                  symbol: currency,
+                ).format(transaction.amount),
+                textAlign: TextAlign.right,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: transaction.type == TransactionType.income
+                      ? Colors.green
+                      : null,
+                ),
               ),
             ),
           ),

@@ -42,13 +42,15 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   }
 
   Future<void> _onDeleteTransaction(String id, Emitter<HomePageState> emit) async {
-    emit(state.copyWith(actionTask: const Task.running()));
+    final previousTransactions = state.allTransactions;
+    emit(state.copyWith(actionTask: const Task.running(),
+    allTransactions: state.allTransactions.where((t) => t.id != id).toList(),));
     try{
       await _repository.deleteTransaction(id);
       emit(state.copyWith(actionTask: const Task.done(null)));
-      add(const HomePageEvent.load());
     }catch(e){
-      emit(state.copyWith(actionTask: Task.failed(e)));
+      emit(state.copyWith(actionTask: Task.failed(e),
+      allTransactions: previousTransactions));
     }
   }
 }
