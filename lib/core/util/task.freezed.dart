@@ -109,8 +109,8 @@ class __$$IdleImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$IdleImpl<T> implements Idle<T> {
-  const _$IdleImpl();
+class _$IdleImpl<T> extends Idle<T> {
+  const _$IdleImpl() : super._();
 
   @override
   String toString() {
@@ -201,8 +201,9 @@ class _$IdleImpl<T> implements Idle<T> {
   }
 }
 
-abstract class Idle<T> implements Task<T> {
+abstract class Idle<T> extends Task<T> {
   const factory Idle() = _$IdleImpl<T>;
+  const Idle._() : super._();
 }
 
 /// @nodoc
@@ -226,8 +227,8 @@ class __$$RunningImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$RunningImpl<T> implements Running<T> {
-  const _$RunningImpl();
+class _$RunningImpl<T> extends Running<T> {
+  const _$RunningImpl() : super._();
 
   @override
   String toString() {
@@ -318,8 +319,9 @@ class _$RunningImpl<T> implements Running<T> {
   }
 }
 
-abstract class Running<T> implements Task<T> {
+abstract class Running<T> extends Task<T> {
   const factory Running() = _$RunningImpl<T>;
+  const Running._() : super._();
 }
 
 /// @nodoc
@@ -357,8 +359,8 @@ class __$$DoneImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$DoneImpl<T> implements Done<T> {
-  const _$DoneImpl(this.value);
+class _$DoneImpl<T> extends Done<T> {
+  const _$DoneImpl(this.value) : super._();
 
   @override
   final T value;
@@ -463,8 +465,9 @@ class _$DoneImpl<T> implements Done<T> {
   }
 }
 
-abstract class Done<T> implements Task<T> {
+abstract class Done<T> extends Task<T> {
   const factory Done(final T value) = _$DoneImpl<T>;
+  const Done._() : super._();
 
   T get value;
 
@@ -510,8 +513,8 @@ class __$$FailedImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$FailedImpl<T> implements Failed<T> {
-  const _$FailedImpl(this.error);
+class _$FailedImpl<T> extends Failed<T> {
+  const _$FailedImpl(this.error) : super._();
 
   @override
   final dynamic error;
@@ -616,8 +619,9 @@ class _$FailedImpl<T> implements Failed<T> {
   }
 }
 
-abstract class Failed<T> implements Task<T> {
+abstract class Failed<T> extends Task<T> {
   const factory Failed(final dynamic error) = _$FailedImpl<T>;
+  const Failed._() : super._();
 
   dynamic get error;
 
